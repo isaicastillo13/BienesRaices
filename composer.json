@@ -1,0 +1,19 @@
+{
+    "name": "isaiascastillo/bienesraices",
+    "description": "Proyecto de Bienes Raices",
+    "type": "project",
+    "authors": [
+        {
+            "name": "isaicastillo13",
+            "email": "isaias.castillo@utp.ac.pa"
+        }
+    ],
+    "require": {
+        "intervention/image": "^2.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\" : "./clases"
+        }
+    }
+}
