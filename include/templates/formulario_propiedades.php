@@ -10,7 +10,7 @@
 
             <label for="imagen">Imagen:</label>
             <input type="file" id="imagen" accept="image/jpg" name="propiedades[imagen]">
-
+            
             <?php if($propiedades->imagen) { ?>
                 <img src="/imagenes/<?php echo $propiedades->imagen ?>" class="imagen-small">
             <?php } ?>
@@ -35,10 +35,9 @@
             <input type="number" id="estacionamiento" name="propiedades[estacionamiento]" placeholder="Ej: 1" min="1" value="<?php echo s($propiedades->estacionamiento); ?>">
 </fieldset>
 
-<!-- <fieldset>
+<fieldset>
             <legend for="vendedores_id">Vendedor:</legend>
             <select id="vendedores_id" name="propiedades[vendedores_id]">
                 <option value="" selected disabled>--Seleccione--</option>
-                
             </select>
-</fieldset> -->
+</fieldset>

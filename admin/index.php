@@ -16,21 +16,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     if($id){
 
-        //Eliminar el archivo (imagen de la propiedad)
-        $query = "SELECT imagen FROM propiedades WHERE id = {$id}";  
-        $resultado = mysqli_query($db, $query);
-        $propiedad = mysqli_fetch_assoc($resultado);
-
-        unlink('../imagenes' . $propiedad['imagen']);
-
-
-        //Eliminar el anuncio
-        $query = "DELETE FROM propiedades WHERE id = {$id}";      
-        $resultado = mysqli_query($db, $query);
-
-        if($resultado){
-            header('Location: /admin?resultado=3');
-        }
+        $propiedades = Propiedades::find($id);
+        $propiedades->eliminar();       
     }
 }
 
