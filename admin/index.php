@@ -3,8 +3,10 @@
     estaAutenticado();
 
  use App\Propiedades;
+ use App\Vendedor;
 
  $propiedades = Propiedades :: all();
+ $vendedor = Vendedor :: all();
  
 //Muestra mensaje condicional
 $resultado=$_GET['resultado'] ?? null;
