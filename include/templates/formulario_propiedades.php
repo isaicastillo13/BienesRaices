@@ -36,8 +36,16 @@
 </fieldset>
 
 <fieldset>
-            <legend for="vendedores_id">Vendedor:</legend>
-            <select id="vendedores_id" name="propiedades[vendedores_id]">
-                <option value="" selected disabled>--Seleccione--</option>
+            <legend>Vendedor:</legend>
+            <label for="vendedor">Vendedor</label>
+            <select id="vendedor" name="propiedades[vendedores_id]">
+                <option value="" selected>--Seleccione--</option>
+                <?php foreach ($vendedores as $vendedor){?>
+                <option 
+                    <?php echo $propiedades->vendedores_id === $vendedor->id ? 'selected' : '';?>
+                    value="<?php echo s($vendedor->id)?>"> 
+                    <?php echo s ($vendedor->nombre) ." ". s ($vendedor->apellido);?>
+                </option>
+                <?php } ?>
             </select>
 </fieldset>

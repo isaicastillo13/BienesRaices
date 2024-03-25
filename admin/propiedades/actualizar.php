@@ -5,6 +5,7 @@ require '../../include/app.php';
 estaAutenticado();
 
 use App\Propiedades;
+use App\Vendedor;
 use Intervention\Image\ImageManagerStatic as Image;
 
 
@@ -16,11 +17,9 @@ if(!$id){
     header('Location: /admin');
 }
 $propiedades = Propiedades::find($id);
-// debuguear($propiedades);
 
-// Consultar para obtener los vendedores
-$consulta = "SELECT * FROM vendedores";
-$resultado = mysqli_query($db, $consulta);
+//  Consultar todos los vendedores
+$vendedores = Vendedor::all();
 
 // Arreglo para el manejo de errores
     $errores = Propiedades::getErrores();
@@ -43,10 +42,12 @@ $resultado = mysqli_query($db, $consulta);
         }
 
         if (empty($errores)) {
-            //alamacenar la imagen en la carpeta imagenes
-            $image->save(CARPETA_IMAGENES . $nombreImagenes);
-            $propiedades->guardar();
-   
+            if($_FILES['propiedades']['tmp_name']['imagen']){      
+                $image = Image::make($_FILES['propiedades']['tmp_name']['imagen'])->fit(800, 600);
+                $image->save(CARPETA_IMAGENES . $nombreImagenes);
+            }
+
+            $propiedades->guardar();   
     }
 }
 

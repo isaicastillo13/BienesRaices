@@ -75,7 +75,7 @@ class ActiveRecord{
     public function atributos()
     {
         $atributos = [];
-        foreach (self::$columnas_DB as $columnas) {
+        foreach (static::$columnas_DB as $columnas) {
             if ($columnas === 'id') continue;
             $atributos[$columnas] = $this->$columnas;
         }
@@ -115,39 +115,13 @@ class ActiveRecord{
     // Validar los campos
     public static function getErrores()
     {
-        return self::$errores;
+        return static::$errores;
     }
 
     public function validar()
     {
-        if (!$this->titulo) {
-            self::$errores[] = "Debes Añadir un Titulo.";
-        }
-
-        if (!$this->precio) {
-            self::$errores[] = "Debes Añadir el Precio de la Propiedad.";
-        }
-
-        if (strlen($this->descripcion) < 50) {
-            self::$errores[] = "Debes Añadir la Descripción de la Propiedad.";
-        }
-        if (!$this->habitaciones) {
-            self::$errores[] = "Debes Añadir el numero de habitacion de la Propiedad.";
-        }
-        if (!$this->banios) {
-            self::$errores[] = "Debes Añadir el numero de los Baños de la Propiedad.";
-        }
-        if (!$this->estacionamiento) {
-            self::$errores[] = "Debes Añadir el numero de estacionamientos de la Propiedad.";
-        }
-        if (!$this->vendedores_id) {
-            self::$errores[] = "Debes Seleccionar el vendedor de la Propiedad.";
-        }
-        if(!$this->imagen){
-            self::$errores[]='Debe Añadir una imagen de la propiedad';
-        }
-
-        return self::$errores;
+        static $errores = [];
+        return static::$errores;
     }
 
     // listar todas las propiedades
@@ -176,7 +150,7 @@ class ActiveRecord{
         //Iterar
         $array = [];
         while ($registro = $resultado->fetch_assoc()){
-            $array [] = self::crearObjeto($registro);
+            $array [] = static::crearObjeto($registro);
             
         }
         //liberar memoria

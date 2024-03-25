@@ -6,9 +6,7 @@
 
     $db=conectarBD();
 
-    use App\Propiedades;
-
-    $propiedades = new Propiedades;
+    use App\ActiveRecord;
     
-    Propiedades::setDB($db);
+    ActiveRecord::setDB($db);
 ?>
