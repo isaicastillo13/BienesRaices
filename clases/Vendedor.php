@@ -10,6 +10,7 @@ class Vendedor extends ActiveRecord{
     public $nombre;
     public $apellido;
     public $telefono;
+    public $mensaje;
 
     public function __construct($arg = [])
     {
@@ -22,18 +23,20 @@ class Vendedor extends ActiveRecord{
     public function validar()
     {
         if (!$this->nombre) {
-            self::$errores[] = "Debes Añadir un Titulo.";
+            self::$errores[] = "Debes Colocar el Nombre.";
         }
 
         if (!$this->apellido) {
-            self::$errores[] = "Debes Añadir el Precio de la Propiedad.";
+            self::$errores[] = "Debes Colocar el Apellido.";
         }
 
         if (!$this->telefono) {
-            self::$errores[] = "Debes Añadir el Precio de la Propiedad.";
+            self::$errores[] = "Debes Colocar el Numero de telefono.";
         }
 
-        
+        if(!preg_match('/[0-9]{8}/',$this->telefono)){
+            self::$errores[]="El formato de telefono no es valido";
+        }
 
 
         return self::$errores;

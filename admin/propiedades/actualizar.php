@@ -16,6 +16,7 @@ $id = filter_var($id,FILTER_VALIDATE_INT);
 if(!$id){
     header('Location: /admin');
 }
+
 $propiedades = Propiedades::find($id);
 
 //  Consultar todos los vendedores

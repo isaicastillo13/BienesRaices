@@ -16,6 +16,8 @@ class Propiedades extends ActiveRecord{
     public $estacionamiento;
     public $creado;
     public $vendedores_id;
+    public $mensaje = 'Propiedad';
+
 
     public function __construct($arg = [])
     {
