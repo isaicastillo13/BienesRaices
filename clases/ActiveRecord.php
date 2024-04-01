@@ -128,11 +128,15 @@ class ActiveRecord{
     // listar todas las propiedades
     public static  function all(){
         $query = "SELECT * FROM " . static::$tabla;
-
         $resultado=self::consultarSQL($query);
-
         return $resultado;
+    }
 
+    public static function get($cantidad){
+
+        $query = "SELECT * FROM " . static::$tabla. " LIMIT " . $cantidad;
+        $resultado=self::consultarSQL($query);
+        return $resultado;
     }
     // Buscar propiedad por id
     public static function find($id){

@@ -1,66 +1,53 @@
 <?php
 
 require 'include/app.php';
-incluirTemplates('header');
-
-//Conexion a la BD
-
-$db = conectarBD();
+use App\Propiedades;
 
 //Validar id
 $id = $_GET['id'];
 $id = filter_var($id, FILTER_VALIDATE_INT);
 
 
-//Consultar a la BD
 
-$query = "SELECT * FROM propiedades WHERE id = {$id}";
+$propiedad = Propiedades::find($id);
 
-//Obetener el resultado
-
-$resultado = mysqli_query($db, $query);
-
-if(!$resultado ->num_rows){
+if(!$id){
     header('Location: /');
 }
+
+incluirTemplates('header');
 
 
 ?>
 
     <main class="contenedor seccion contenido-centrado">
-        <?php 
-            $propiedades = mysqli_fetch_assoc($resultado);
-        ?>
-        <h1><?php echo $propiedades['titulo']?></h1>
+        <h1><?php echo $propiedad->titulo?></h1>
 
         
-            <img loading="lazy" src="/imagenes/<?php echo $propiedades['imagen']?>" alt="imagen de la propiedad">
+            <img loading="lazy" src="/imagenes/<?php echo $propiedad->imagen?>" alt="imagen de la propiedad">
        
 
         <div class="resumen-propiedad">
-            <p class="precio">$<?php echo $propiedades['precio']?></p>
+            <p class="precio">$<?php echo $propiedad->precio?></p>
             <ul class="iconos-caracteristicas">
                 <li>
                     <img class="icono" loading="lazy" src="build/img/icono_wc.svg" alt="icono wc">
-                    <p><?php echo $propiedades['banios']?></p>
+                    <p><?php echo $propiedad->banios?></p>
                 </li>
                 <li>
                     <img class="icono" loading="lazy" src="build/img/icono_estacionamiento.svg" alt="icono estacionamiento">
-                    <p><?php echo $propiedades['estacionamiento']?></p>
+                    <p><?php echo $propiedad->estacionamiento?></p>
                 </li>
                 <li>
                     <img class="icono"  loading="lazy" src="build/img/icono_dormitorio.svg" alt="icono habitaciones">
-                    <p><?php echo $propiedades['habitaciones']?></p>
+                    <p><?php echo $propiedad->habitaciones?></p>
                 </li>
             </ul>
 
-                <p><?php echo $propiedades['descripcion']?></p>
+                <p><?php echo $propiedad->descripcion?></p>
         </div>
     </main>
 
 <?php
     incluirTemplates('footer');
-
-    //Cerrar BD
-    mysqli_close($db);
 ?>

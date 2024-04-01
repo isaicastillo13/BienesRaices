@@ -41,7 +41,7 @@ incluirTemplates('header', $inicio =true);
         include 'include/templates/anuncios.php'
     ?>
     <div class="alinear-derecha">
-        <a href="anuncions.php" class="boton-verde">Ver Todas</a>
+        <a href="anuncios.php" class="boton-verde">Ver Todas</a>
     </div>
 </section>
 <section class="imagen-contacto">
